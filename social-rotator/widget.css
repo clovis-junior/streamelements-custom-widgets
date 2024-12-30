@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family={{fontFamily}}&display=swap');
+
+*, *:after, *:before { margin: 0; padding: 0; box-sizing: border-box}
+* {
+    outline: 0;
+    border: none;
+    font-size: 100%;
+    background: transparent;
+    vertical-align: baseline
+}
+
+@keyframes blink-caret {
+    0%, 100% {border-color: transparent}
+    50% {border-color: initial}
+}
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.social {
+    width: 100%;
+    max-width: 300px;
+    max-height: 3rem;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: {{contentAlign}};
+    align-items: center;
+    overflow: hidden;
+    padding: 1rem;
+    background-color: #060606;
+    color: #fffefe;
+    transition: all 1s;
+    filter: opacity(0%);
+    transform: translateY(100%);
+    position: absolute
+}
+.social.show {filter: opacity(100%); transform: initial}
+
+.social-icon {
+    display: block;
+    margin-right: 1rem;
+    font-size: {{socialIconSize}}rem;
+}
+.social-name {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #fffefe;
+    letter-spacing: {{letterSpacing}}px;
+    font-family: {{fontFamily}};
+    font-weight: {{fontWeight}};
+    font-size: {{socialFontSize}}rem;
+    animation: blink-caret 500ms step-end infinite;
+    transition: width 200ms steps(30, end)
+}
+.social.show .social-name { transition: width 500ms steps(30, end); transition-delay: 300ms }
