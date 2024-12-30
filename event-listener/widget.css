@@ -1,0 +1,121 @@
+*, *:after, *:before { margin: 0; padding: 0; box-sizing: border-box}
+* {
+  	outline: 0;
+  	border: none;
+  	font-size: 100%;
+  	background: transparent;
+  	vertical-align: baseline
+}
+
+@keyframes show {
+    0% {
+        flex-basis: 0%;
+        filter: opacity(0%);
+    }
+    100% {
+        width: initial;
+        filter: initial;
+    }
+}
+
+@keyframes hide {
+    100% {
+        flex-basis: 0%;
+        filter: opacity(0%);
+    }
+}
+
+.main-container {
+  	width: 90%;
+  	display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+  	overflow: hidden;
+}
+
+.event {
+    flex: 1 0 calc(100% / {{eventsLimit}});
+  	height: 3rem;
+    padding: 1px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+ 	border-bottom-width: 4px;
+ 	border-bottom-style: solid;
+    background-color: {{backgroundColor}};
+  	transition: all 500ms;
+}
+.event.show {
+    animation: show 360ms linear;
+}
+.event.hide {
+    animation: hide 360ms linear;
+}
+.event:not(:last-of-type) { margin-right:13px;  }
+
+.event.follower { border-bottom-color: {{followColor}} }
+.event.sub, .event.subscriber { border-bottom-color: {{subColor}} }
+.event.tip { border-bottom-color: {{tipColor}} }
+.event.cheer { border-bottom-color: {{cheerColor}} }
+.event.redemption { border-bottom-color: {{redemptionColor}} }
+.event.host { border-bottom-color: {{hostColor}} }
+.event.raid { border-bottom-color: {{raidColor}} }
+
+.event .username {
+  flex: 1 0 auto;
+  display: block;
+  overflow: hidden;
+  padding: 10px;
+   letter-spacing: {{letterSpacing}}px;
+  font-family: {{fontName}};
+   font-weight: {{fontWeight}};
+  font-size: {{fontSize}}px;
+  color: {{fontColor}};
+	white-space: nowrap;
+   text-overflow: ellipsis;
+}
+
+.event .event-icon.gift {
+  --url: url('{{giftIcon}}');
+}
+
+.event .event-icon.follower {
+  --url: url('{{followIcon}}');
+}
+
+.event .event-icon.cheer {
+  	--url: url('{{cheerIcon}}');
+}
+
+.event .event-icon.host {
+    --url: url('{{hostIcon}}');
+}
+
+.event .event-icon.raid {
+    --url: url('{{raidIcon}}');
+}
+
+.event .event-icon.sub,
+.event .event-icon.subscriber {
+    --url: url('{{subIcon}}');
+}
+
+.event .event-icon.tip {
+    --url: url('{{tipIcon}}');
+}
+
+.event .event-icon.redemption {
+    --url: url('{{redemptionIcon}}');
+}
+.event .event-icon {
+  	flex: 0 0 {{iconSize}}px;
+    height: {{iconSize}}px;
+    display: block;
+    object-fit: cover;
+	background-size: cover;
+  	background-position: center;
+  	background-image: var(--url);
+}
