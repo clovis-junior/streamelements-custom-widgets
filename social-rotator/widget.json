@@ -1,0 +1,225 @@
+{
+  "slideInterval": {
+    "group": "General",
+    "type": "slider",
+    "label": "Slide Interval (in minutes)",
+    "value": 1,
+    "min": 0.1,
+    "max": 60,
+    "step": 0.1
+  },
+  "slideTimer": {
+    "group": "General",
+    "type": "slider",
+    "label": "Slide Show (in seconds)",
+    "value": 3,
+    "min": 1,
+    "max": 10,
+    "step": 1
+  },
+  "contentAlign": {
+    "group": "General",
+    "label": "Content Align",
+    "type": "dropdown",
+    "value": "flex-start",
+    "options": {
+      "flex-start": "Left",
+      "center": "Center",
+      "flex-end": "Right",
+      "space-around": "Space-Around",
+      "space-between": "Space-Between",
+      "space-evenly": "Space-Evenly"
+    }
+  },
+  "fontFamily": {
+    "group": "General",
+    "type": "googleFont",
+    "label": "Select a font:",
+    "value": "Nunito"
+  },
+  "letterSpacing": {
+    "group": "General",
+    "type": "slider",
+    "label": "Letter Spacing (in px)",
+    "value": 0,
+    "min": 0,
+    "max": 5,
+    "step": 1
+  },
+  "fontWeight": {
+    "group": "General",
+    "label": "Font Weight",
+    "type": "dropdown",
+    "value": "400",
+    "options": {
+      "100": "Thin (100)",
+      "300": "Light (300)",
+      "400": "Regular (400)",
+      "500": "Medium (500)",
+      "700": "Bold (700)",
+      "900": "Black (900)"
+    }
+  },
+  "socialFontSize": {
+    "group": "General",
+    "type": "slider",
+    "label": "Font Size (in rem)",
+    "value": 1,
+    "min": 1,
+    "max": 5,
+    "step": 0.1
+  },
+  "socialIconSize": {
+    "group": "General",
+    "type": "slider",
+    "label": "Icon Size (in rem)",
+    "value": 5,
+    "min": 1,
+    "max": 10,
+    "step": 1
+  },
+  "social1Display": {
+    "group": "Social #1",
+    "type": "dropdown",
+    "label": "Display on Stream",
+    "value": "true",
+    "options": {
+      "true": "Display",
+      "false": "Don't display"
+    }
+  },
+  "social1Icon": {
+    "group": "Social #1",
+    "type": "text",
+    "label": "FontAwesome icon"
+  },
+  "social1Name": {
+    "group": "Social #1",
+    "type": "text",
+    "label": "Social Name",
+    "value": "MySocial"
+  },
+  "social1Color": {
+    "group": "Social #1",
+    "type": "colorpicker",
+    "label": "Social Color",
+    "value": "#0000FF"
+  },
+  "social2Display": {
+    "group": "Social #2",
+    "type": "dropdown",
+    "label": "Display on Stream",
+    "value": "true",
+    "options": {
+      "true": "Display",
+      "false": "Don't display"
+    }
+  },
+  "social2Icon": {
+    "group": "Social #2",
+    "type": "text",
+    "label": "FontAwesome icon"
+  },
+  "social2Name": {
+    "group": "Social #2",
+    "type": "text",
+    "label": "Social Name"
+  },
+  "social2Color": {
+    "group": "Social #2",
+    "type": "colorpicker",
+    "label": "Social Color",
+    "value": "#0000FF"
+  },
+  "social3Display": {
+    "group": "Social #3",
+    "type": "dropdown",
+    "label": "Display on Stream",
+    "value": "true",
+    "options": {
+      "true": "Display",
+      "false": "Don't display"
+    }
+  },
+  "social3Icon": {
+    "group": "Social #3",
+    "type": "text",
+    "label": "FontAwesome icon",
+    "value": "x-twitter"
+  },
+  "social3Name": {
+    "group": "Social #3",
+    "type": "text",
+    "label": "Social Name"
+  },
+  "social3Color": {
+    "group": "Social #3",
+    "type": "colorpicker",
+    "label": "Social Color",
+    "value": "#0000FF"
+  },
+  "social4Display": {
+    "group": "Social #4",
+    "type": "dropdown",
+    "label": "Display on Stream",
+    "value": "true",
+    "options": {
+      "true": "Display",
+      "false": "Don't display"
+    }
+  },
+  "social4Icon": {
+    "group": "Social #4",
+    "type": "text",
+    "label": "FontAwesome icon"
+  },
+  "social4Name": {
+    "group": "Social #4",
+    "type": "text",
+    "label": "Social Name"
+  },
+  "social4Color": {
+    "group": "Social #4",
+    "type": "colorpicker",
+    "label": "Social Color",
+    "value": "#0000FF"
+  },
+  "social5Display": {
+    "group": "Social #5",
+    "type": "dropdown",
+    "label": "Display on Stream",
+    "value": "true",
+    "options": {
+      "true": "Display",
+      "false": "Don't display"
+    }
+  },
+  "social5Icon": {
+    "group": "Social #5",
+    "type": "text",
+    "label": "FontAwesome icon"
+  },
+  "social5Name": {
+    "group": "Social #5",
+    "type": "text",
+    "label": "Social Name"
+  },
+  "social5Color": {
+    "group": "Social #5",
+    "type": "colorpicker",
+    "label": "Social Color",
+    "value": "#0000FF"
+  },
+  "widgetName": {
+    "type": "hidden",
+    "value": "Social Media Rotator"
+  },
+  "widgetAuthor": {
+    "type": "hidden",
+    "value": "Clovis Junior"
+  },
+  "widgetVersion": {
+    "type": "hidden",
+    "value": "0.1"
+  }
+}
