@@ -32,20 +32,21 @@ function getVariables(event, text) {
     switch(event.type) {
         case 'subscriber':
         case 'sub':
-            text = text.replace('{amount}',  event.amount);
+            text = text.replace('{sender}',  event.sender || ''),
+            text = text.replace('{amount}',  event.amount),
             text = text.replace('{tier}',  event.tier);
             break;
         case 'tip':
             text = text.replace('{amount}', event.amount.toLocaleString(userLocale, {
                 style: 'currency',
                 currency: userCurrency.code
-            }));
+            })),
             text = text.replace('{message}', event.message ? event.message.toString() : '');
             break;
         case 'cheer':
         case 'host':
         case 'raid':
-            text = text.replace('{amount}', event.amount.toLocaleString());
+            text = text.replace('{amount}', event.amount.toLocaleString()),
             text = text.replace('{message}', event.message ? event.message.toString() : '');
             break;
     }
