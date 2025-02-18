@@ -1,0 +1,235 @@
+{
+  "testSendMessage": {
+    "group": "Test Widget",
+    "type": "button",
+    "label": "Send Message",
+    "value": "send-test"
+  },
+  "testDeleteMessage": {
+    "group": "Test Widget",
+    "type": "button",
+    "label": "Delete Message",
+    "value": "delete-test"
+  },
+  "displayBadges": {
+    "group": "General Settings",
+    "type": "dropdown",
+    "label": "Display Badges",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+  "twitchChannels": {
+    "group": "General Settings",
+    "label": "Twitch Channel (separate with \",\" for multiple channels)",
+    "type": "text",
+    "value": ""
+  },
+  "youtubeChannels": {
+    "group": "General Settings",
+    "label": "YouTube Channel",
+    "type": "text",
+    "value": ""
+  },
+  "ignoredUsers": {
+    "group": "General Settings",
+    "label": "Ignored users (separate with \",\")",
+    "type": "text",
+    "value": "Streamlabs, StreamElements, Nightbot"
+  },
+  "messagesLimit": {
+    "group": "General Settings",
+    "type": "number",
+    "label": "Messages limit",
+    "value": 10
+  },
+  "emoteSize": {
+    "group": "General Settings",
+    "type": "number",
+    "label": "Emote size (in px)",
+    "value": 24
+  },
+  "hideCommands": {
+    "group": "General Settings",
+    "label": "Hide lines starting with ! (!command)",
+    "type": "dropdown",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+  "hideAfter": {
+    "group": "General Settings",
+    "type": "number",
+    "label": "Hide after seconds (0 to disable)",
+    "value": 0
+  },
+  "chatAnimationIn": {
+    "group": "General Settings",
+    "type": "dropdown",
+    "label": "Animation In:",
+    "value": "none",
+    "options": {
+      "none": "None",
+      "bounceIn": "bounceIn",
+      "bounceInDown": "bounceInDown",
+      "bounceInLeft": "bounceInLeft",
+      "bounceInRight": "bounceInRight",
+      "bounceInUp": "bounceInUp",
+      "fadeIn": "fadeIn",
+      "fadeInDown": "fadeInDown",
+      "fadeInDownBig": "fadeInDownBig",
+      "fadeInLeft": "fadeInLeft",
+      "fadeInLeftBig": "fadeInLeftBig",
+      "fadeInRight": "fadeInRight",
+      "fadeInRightBig": "fadeInRightBig",
+      "fadeInUp": "fadeInUp",
+      "fadeInUpBig": "fadeInUpBig",
+      "flipInX": "flipInX",
+      "flipInY": "flipInY",
+      "lightSpeedIn": "lightSpeedIn",
+      "rotateIn": "rotateIn",
+      "rotateInDownLeft": "rotateInDownLeft",
+      "rotateInDownRight": "rotateInDownRight",
+      "rotateInUpLeft": "rotateInUpLeft",
+      "rotateInUpRight": "rotateInUpRight",
+      "slideInUp": "slideInUp",
+      "slideInDown": "slideInDown",
+      "slideInLeft": "slideInLeft",
+      "slideInRight": "slideInRight",
+      "zoomIn": "zoomIn",
+      "zoomInDown": "zoomInDown",
+      "zoomInLeft": "zoomInLeft",
+      "zoomInRight": "zoomInRight",
+      "zoomInUp": "zoomInUp",
+      "jackInTheBox": "jackInTheBox",
+      "rollIn": "rollIn"
+    }
+  },
+  "chatAnimationOut": {
+    "group": "General Settings",
+    "type": "dropdown",
+    "label": "Animation Out:",
+    "value": "none",
+    "options": {
+      "none": "None",
+      "bounceOut": "bounceOut",
+      "bounceOutDown": "bounceOutDown",
+      "bounceOutLeft": "bounceOutLeft",
+      "bounceOutRight": "bounceOutRight",
+      "bounceOutUp": "bounceOutUp",
+      "fadeOut": "fadeOut",
+      "fadeOutDown": "fadeOutDown",
+      "fadeOutDownBig": "fadeOutDownBig",
+      "fadeOutLeft": "fadeOutLeft",
+      "fadeOutLeftBig": "fadeOutLeftBig",
+      "fadeOutRight": "fadeOutRight",
+      "fadeOutRightBig": "fadeOutRightBig",
+      "fadeOutUp": "fadeOutUp",
+      "fadeOutUpBig": "fadeOutUpBig",
+      "flipOutX": "flipOutX",
+      "flipOutY": "flipOutY",
+      "lightSpeedOut": "lightSpeedOut",
+      "rotateOut": "rotateOut",
+      "rotateOutDownLeft": "rotateOutDownLeft",
+      "rotateOutDownRight": "rotateOutDownRight",
+      "rotateOutUpLeft": "rotateOutUpLeft",
+      "rotateOutUpRight": "rotateOutUpRight",
+      "slideOutUp": "slideOutUp",
+      "slideOutDown": "slideOutDown",
+      "slideOutLeft": "slideOutLeft",
+      "slideOutRight": "slideOutRight",
+      "zoomOut": "zoomOut",
+      "zoomOutDown": "zoomOutDown",
+      "zoomOutLeft": "zoomOutLeft",
+      "zoomOutRight": "zoomOutRight",
+      "zoomOutUp": "zoomOutUp",
+      "rollOut": "rollOut"
+    }
+  },
+  "headerFontName": {
+     "group": "Header Settings",
+     "type": "googleFont",
+     "label": "Select a font:",
+     "value": "Nunito"
+  },
+  "headerFontWeight": {
+    "group": "Header Settings",
+    "label": "Font Weight",
+    "type": "dropdown",
+    "value": "400",
+    "options": {
+      "100": "Thin (100)",
+      "200": "ExtraLight (200)",
+      "300": "Light (300)",
+      "400": "Regular (400)",
+      "500": "Medium (500)",
+      "600": "SemiBold (600)",
+      "700": "Bold (700)",
+      "800": "ExtraBold (800)",
+      "900": "Black (900)"
+    }
+  },
+  "headerFontSize": {
+    "group": "Header Settings",
+    "type": "number",
+    "label": "Font Size (in px)",
+    "value": 24
+  },
+  "headerLetterSpacing": {
+    "group": "Header Settings",
+    "type": "number",
+    "label": "Letter Spacing (in px)",
+    "value": 0
+  },
+  "messageFontName": {
+     "group": "Message Settings",
+     "type": "googleFont",
+     "label": "Select a font:",
+     "value": "Nunito"
+  },
+  "messageFontWeight": {
+    "group": "Message Settings",
+    "label": "Font Weight",
+    "type": "dropdown",
+    "value": "400",
+    "options": {
+      "100": "Thin (100)",
+      "200": "ExtraLight (200)",
+      "300": "Light (300)",
+      "400": "Regular (400)",
+      "500": "Medium (500)",
+      "600": "SemiBold (600)",
+      "700": "Bold (700)",
+      "800": "ExtraBold (800)",
+      "900": "Black (900)"
+    }
+  },
+  "messageFontSize": {
+    "group": "Message Settings",
+    "type": "number",
+    "label": "Font Size (in px)",
+    "value": 24
+  },
+  "messageLetterSpacing": {
+    "group": "Message Settings",
+    "type": "number",
+    "label": "Letter Spacing (in px)",
+    "value": 0
+  },
+  "widgetName": {
+    "type": "hidden",
+    "value": "Chat Twitch"
+  },
+  "widgetAuthor": {
+    "type": "hidden",
+    "value": "Clovis Junior"
+  },
+  "widgetVersion": {
+    "type": "hidden",
+    "value": "0.1"
+  }
+}
