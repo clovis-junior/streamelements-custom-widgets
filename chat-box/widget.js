@@ -1,9 +1,12 @@
 var	ignoredUsers = [],
 	hideCommands = false;
 
+var targetChannel;
+
 var	messagesLimit = 0,
 	messagesHide = 0;
 
+const twitchColors = ['Blue', 'Coral', 'DodgerBlue', 'SpringGreen', 'YellowGreen', 'Green', 'OrangeRed', 'Red', 'GoldenRod', 'HotPink'];
 const container = document.querySelector('.main-container');
 
 function animateCSS(element, animation, prefix='animate__') {
@@ -99,7 +102,6 @@ function formatMessageText(text) {
 }
 
 function insertMessage(data) {
-  	console.log(data);
 	if(!data || ignoredUsers.indexOf(data.nick) > -1 || hideCommands && data.text.startsWith('!'))
 		return;
 
@@ -141,6 +143,9 @@ function insertMessage(data) {
 }
 
 function removeMessage(element) {
+  	if(isEmpty(element))
+    	return;
+  
 	if(element instanceof HTMLElement) {
 		animateCSS(element, '{chatAnimationOut}');
 		
@@ -158,8 +163,11 @@ function removeMessage(element) {
 	}
 }
 
-function getChannelInfos(channel) {
-	fetch(`https://api.streamelements.com/kappa/v2/channels/${channel.id}`, {
+function getChannelInfos(){
+  	if(isEmpty(targetChannel))
+       return;
+  
+	fetch(`https://api.streamelements.com/kappa/v2/channels/${targetChannel.id}`, {
 		method: 'GET',
 		headers: {
 			'Accept:': 'application/json; charset=utf-8'
@@ -194,67 +202,54 @@ window.addEventListener('onWidgetLoad', function(obj){
 
 	messagesLimit = fieldData.messagesLimit || messagesLimit,
 	messagesHide = fieldData.hideAfter || messagesHide;
+  
+  	targetChannel = obj.detail.channel;
 
-	getChannelInfos(obj.detail.channel);
+	getChannelInfos();
 }),
 window.addEventListener('onEventReceived', function(obj){
 	if (obj.detail.event.listener === 'widget-button') {
 		if (obj.detail.event.value === 'send-test') {
 			const event = {
-				'detail': {
-					'listener': 'message',
-					'event': {
-						'data': {
-							'id': 'test',
-							'channel': 'test',
-							'author': {
-								'id': 'test',
-								'badges': [{
-									'type': 'moderator',
-									'urls': {
-										1: 'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1',
-										2: 'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/2',
-										3: 'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/3'
-									},
-									'version': '1'
-								}, {
-									'type': 'partner',
-									'urls': {
-										1: 'https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/1',
-										2: 'https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/2',
-										3: 'https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/3'
-									},
-									'version': '1'
-								}],
-								'color': 'purple',
-								'displayName': 'Bill',
-								'name': 'bill',
-								'nick': 'Bill'
-							},
-							'message': {
-								'emotes': [{
-									'type': 'twitch',
-									'name': 'Kappa',
-									'urls': {
-										1: 'https://static-cdn.jtvnw.net/emoticons/v1/25/1.0',
-										2: 'https://static-cdn.jtvnw.net/emoticons/v1/25/1.0',
-										3: 'https://static-cdn.jtvnw.net/emoticons/v1/25/3.0'
-									},
-									'position': {'start': 46, 'end': 50}
-								}],
-								'text': 'Olá @Mention Kappa'
-							}
-						}
-					}
-				}
-			};
+                'detail': {
+                  	'listener': 'message',
+                    'event': {
+                        'data': {
+                            'nick': 'jimmy',
+                            'displayColor': twitchColors[Math.floor((Math.random() * twitchColors.length))],
+                            'badges': [{
+                                'type': 'moderator',
+                                'version': '3',
+                                'url': 'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/3'
+                            },{
+                                'type': 'partner',
+                                'version': '3',
+                                'url': 'https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/3'
+                            }],
+                            'text': 'This is the test message! Kappa',
+                            'emotes': [{
+                                'type': 'twitch',
+                                'name': 'Kappa',
+                                'id': '25',
+                                'gif': false,
+                                'animated': false,
+                                'urls': {
+                                    '1': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/1.0',
+                                    '2': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/2.0',
+                                    '4': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/3.0'
+                                },
+                                'start': 26,
+                                'end': 31
+                            }]
+                        }
+                    }
+                }
+            };
 	
 			window.dispatchEvent(new CustomEvent('onEventReceived', event));
 			return
-		} else if (obj.detail.event.value === 'delete-test') {
-			removeMessage();
-			return
-		}
+		} else if (obj.detail.event.value === 'delete-test')
+			return removeMessage();
 	}
 
 	if (obj.detail.listener === 'message')
