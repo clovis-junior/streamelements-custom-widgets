@@ -1,24 +1,24 @@
-var	ignoredUsers = [],
+var ignoredUsers = [],
 	hideCommands = false;
 
 var targetChannel;
 
-var	messagesLimit = 0,
+var messagesLimit = 0,
 	messagesHide = 0;
 
 const twitchColors = ['Blue', 'Coral', 'DodgerBlue', 'SpringGreen', 'YellowGreen', 'Green', 'OrangeRed', 'Red', 'GoldenRod', 'HotPink'];
 const container = document.querySelector('.main-container');
 
-function animateCSS(element, animation, prefix='animate__') {
+function animateCSS(element, animation, prefix = 'animate__') {
 	const animationName = `${prefix}${animation}`;
 
 	var node = undefined;
-	if(element instanceof HTMLElement)
+	if (element instanceof HTMLElement)
 		node = element;
 	else if (element instanceof String)
 		node = document.querySelector(element);
-	
-	if(!node)
+
+	if (!node)
 		return;
 
 	node.classList.add(`${prefix}animated`, animationName);
@@ -26,22 +26,24 @@ function animateCSS(element, animation, prefix='animate__') {
 	node.addEventListener('animationend', function(event) {
 		event.stopPropagation();
 		node.classList.remove(`${prefix}animated`, animationName)
-	}, {once: true})
+	}, {
+		once: true
+	})
 }
 
 function isEmpty(variable) {
-    return (typeof variable === 'undefined' || variable === null || (typeof variable === 'string' && variable.length <= 0));
+	return (typeof variable === 'undefined' || variable === null || (typeof variable === 'string' && variable.length <= 0));
 }
 
 function htmlEncode(string) {
 	string = string.toString();
 
-    return string.replace(/[<>"^]/g, function(e) {
-        return `&#${e.charCodeAt(0)};`
-    });
+	return string.replace(/[<>"^]/g, function(e) {
+		return `&#${e.charCodeAt(0)};`
+	});
 }
 
-function attachMessageEmotes(emotes=[], text='', provider='twitch') {
+function attachMessageEmotes(emotes = [], text = '', provider = 'twitch') {
 	text = text.replace(/([^\s]*)/gi, function(match, key) {
 		const result = emotes.filter(function(emote) {
 			return htmlEncode(emote.name) === key
@@ -49,23 +51,26 @@ function attachMessageEmotes(emotes=[], text='', provider='twitch') {
 
 		if (!isEmpty(result[0])) {
 			let url = result[0]['urls'][1];
-            if (provider === 'twitch') {
-                let imageElement = document.createElement('img');
+			if (provider === 'twitch') {
+				let imageElement = document.createElement('img');
 				imageElement.classList.add('emote'),
-				imageElement.src = result[0]['urls'][2];
+					imageElement.src = result[0]['urls'][2];
 
 				return imageElement.outerHTML
 			} else {
-                if (isEmpty(result[0].coords))
-                    result[0].coords = {x: 0, y: 0};
-                        
+				if (isEmpty(result[0].coords))
+					result[0].coords = {
+						x: 0,
+						y: 0
+					};
+
 				let x = parseInt(result[0].coords.x),
-                	y = parseInt(result[0].coords.y);
+					y = parseInt(result[0].coords.y);
 
 				let emoteElement = document.createElement('span');
 				imageElement.classList.add('emote'),
-				emoteElement.style.backgroundImage = `url(${url})`,
-				emoteElement.style.backgroundPosition = `-${x}px -${y}px`;
+					emoteElement.style.backgroundImage = `url(${url})`,
+					emoteElement.style.backgroundPosition = `-${x}px -${y}px`;
 
 				return emoteElement.outerHTML
 			}
@@ -83,18 +88,18 @@ function formatMessageText(text) {
 	text = text.replace(/\@([A-Za-z0-9\-\_]{4,})/g, function(match) {
 		const template = document.getElementById('mention-template'),
 			element = template.content.cloneNode(true);
-	
+
 		element.querySelector('.mention').innerText = match.toString();
-	
+
 		return element.firstElementChild.outerHTML
 	});
 
 	text = text.replace(/(?<protocol>https?)(?:\:)\/\/(\w+\.)?(?<domain>\w{1,256}\.[a-zA-Z0-9.]{1,})(?:[\/\?\=\&\#\.][\w-]+)*\/?/g, function(match) {
 		const template = document.getElementById('link-template'),
 			element = template.content.cloneNode(true);
-	
+
 		element.querySelector('.link').innerText = match.toString();
-	
+
 		return element.firstElementChild.outerHTML
 	});
 
@@ -102,15 +107,15 @@ function formatMessageText(text) {
 }
 
 function insertMessage(data) {
-	if(!data || ignoredUsers.indexOf(data.nick) > -1 || hideCommands && data.text.startsWith('!'))
+	if (!data || ignoredUsers.indexOf(data.nick) > -1 || hideCommands && data.text.startsWith('!'))
 		return;
 
 	const template = document.getElementById('chat-template'),
-        element = template.content.cloneNode(true);
+		element = template.content.cloneNode(true);
 
-  	animateCSS(element.querySelector('.chat'), '{chatAnimationIn}');
+	animateCSS(element.querySelector('.chat'), '{chatAnimationIn}');
 
-	for(let i=0;i<data.badges.length;i++) {
+	for (let i = 0; i < data.badges.length; i++) {
 		let imageElement = document.createElement('img');
 		imageElement.src = data.badges[i]['url'];
 
@@ -128,45 +133,49 @@ function insertMessage(data) {
 	let messageShow = formatMessageText(data.text);
 	messageShow = attachMessageEmotes(data.emotes, messageShow);
 
-    element.querySelector('.chat-message-content').innerHTML = messageShow;
+	element.querySelector('.chat-message-content').innerHTML = messageShow;
 
-  	container.append(element);
+	container.append(element);
 
-	if(messagesHide !== 0) {
-		setTimeout(function(){
+	if (messagesHide !== 0) {
+		setTimeout(function() {
 			removeMessage(element)
 		}, parseInt(messagesHide * 1000));
 	}
-  
-  	if(messagesLimit != 0 && container.children.length > messagesLimit)
-		removeMessage();
+
+	if (messagesLimit != 0 && container.children.length > messagesLimit)
+		removeMessage(container.children[0]);
 }
 
 function removeMessage(element) {
-  	if(isEmpty(element))
-    	return;
-  
-	if(element instanceof HTMLElement) {
+	if (isEmpty(element))
+		return;
+
+	if (element instanceof HTMLElement) {
 		animateCSS(element, '{chatAnimationOut}');
-		
+
 		element.addEventListener('animationend', function() {
 			element.remove();
-		}, {once: true})
+		}, {
+			once: true
+		})
 
 		return
 	} else {
 		animateCSS(container.children[container.children.length - 1], '{chatAnimationOut}');
-		
+
 		container.children[container.children.length - 1].addEventListener('animationend', function() {
 			container.children[container.children.length - 1].remove()
-		}, {once: true})
+		}, {
+			once: true
+		})
 	}
 }
 
-function getChannelInfos(){
-  	if(isEmpty(targetChannel))
-       return;
-  
+function getChannelInfos() {
+	if (isEmpty(targetChannel))
+		return;
+
 	fetch(`https://api.streamelements.com/kappa/v2/channels/${targetChannel.id}`, {
 		method: 'GET',
 		headers: {
@@ -186,72 +195,72 @@ function getChannelInfos(){
 				'ffzGlobalEmotes': emotes.ffzGlobalEmotes
 			}
 		})
-    })
+	})
 }
 
-window.addEventListener('onWidgetLoad', function(obj){	
-	const fieldData = obj.detail.fieldData;
+window.addEventListener('onWidgetLoad', function(obj) {
+		const fieldData = obj.detail.fieldData;
 
-	if(!isEmpty(fieldData.ignoredUsers)) {
-		ignoredUsers = fieldData.ignoredUsers.toLowerCase(),
-		ignoredUsers = ignoredUsers.replace(/\s+/g, ''),
-		ignoredUsers = ignoredUsers.split(',')
-	}
+		if (!isEmpty(fieldData.ignoredUsers)) {
+			ignoredUsers = fieldData.ignoredUsers.toLowerCase(),
+				ignoredUsers = ignoredUsers.replace(/\s+/g, ''),
+				ignoredUsers = ignoredUsers.split(',')
+		}
 
-	hideCommands = fieldData.hideCommands || hideCommands;
+		hideCommands = fieldData.hideCommands || hideCommands;
 
-	messagesLimit = fieldData.messagesLimit || messagesLimit,
-	messagesHide = fieldData.hideAfter || messagesHide;
-  
-  	targetChannel = obj.detail.channel;
+		messagesLimit = fieldData.messagesLimit || messagesLimit,
+			messagesHide = fieldData.hideAfter || messagesHide;
 
-	getChannelInfos();
-}),
-window.addEventListener('onEventReceived', function(obj){
-	if (obj.detail.event.listener === 'widget-button') {
-		if (obj.detail.event.value === 'send-test') {
-			const event = {
-                'detail': {
-                  	'listener': 'message',
-                    'event': {
-                        'data': {
-                            'nick': 'jimmy',
-                            'displayColor': twitchColors[Math.floor((Math.random() * twitchColors.length))],
-                            'badges': [{
-                                'type': 'moderator',
-                                'version': '3',
-                                'url': 'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/3'
-                            },{
-                                'type': 'partner',
-                                'version': '3',
-                                'url': 'https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/3'
-                            }],
-                            'text': 'This is the test message! Kappa',
-                            'emotes': [{
-                                'type': 'twitch',
-                                'name': 'Kappa',
-                                'id': '25',
-                                'gif': false,
-                                'animated': false,
-                                'urls': {
-                                    '1': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/1.0',
-                                    '2': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/2.0',
-                                    '4': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/3.0'
-                                },
-                                'start': 26,
-                                'end': 31
-                            }]
-                        }
-                    }
-                }
-            };
-	
-			window.dispatchEvent(new CustomEvent('onEventReceived', event));
-			return
-		} else if (obj.detail.event.value === 'delete-test')
-			return removeMessage();
-	}
+		targetChannel = obj.detail.channel;
 
-	if (obj.detail.listener === 'message')
-		insertMessage(obj.detail.event.data);
-})
+		getChannelInfos();
+	}),
+	window.addEventListener('onEventReceived', function(obj) {
+		if (obj.detail.event.listener === 'widget-button') {
+			if (obj.detail.event.value === 'send-test') {
+				const event = {
+					'detail': {
+						'listener': 'message',
+						'event': {
+							'data': {
+								'nick': 'jimmy',
+								'displayColor': twitchColors[Math.floor((Math.random() * twitchColors.length))],
+								'badges': [{
+									'type': 'moderator',
+									'version': '3',
+									'url': 'https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/3'
+								}, {
+									'type': 'partner',
+									'version': '3',
+									'url': 'https://static-cdn.jtvnw.net/badges/v1/d12a2e27-16f6-41d0-ab77-b780518f00a3/3'
+								}],
+								'text': 'This is the test message! Kappa',
+								'emotes': [{
+									'type': 'twitch',
+									'name': 'Kappa',
+									'id': '25',
+									'gif': false,
+									'animated': false,
+									'urls': {
+										'1': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/1.0',
+										'2': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/2.0',
+										'4': 'https://static-cdn.jtvnw.net/emoticons/v2/25/static/dark/3.0'
+									},
+									'start': 26,
+									'end': 31
+								}]
+							}
+						}
+					}
+				};
+
+				window.dispatchEvent(new CustomEvent('onEventReceived', event));
+				return
+			} else if (obj.detail.event.value === 'delete-test')
+				return removeMessage(container.children[0]);
+		}
+
+		if (obj.detail.listener === 'message')
+			insertMessage(obj.detail.event.data);
+	})
