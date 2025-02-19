@@ -21,18 +21,6 @@
       "no": "No"
     }
   },
-  "twitchChannels": {
-    "group": "General Settings",
-    "label": "Twitch Channel (separate with \",\" for multiple channels)",
-    "type": "text",
-    "value": ""
-  },
-  "youtubeChannels": {
-    "group": "General Settings",
-    "label": "YouTube Channel",
-    "type": "text",
-    "value": ""
-  },
   "ignoredUsers": {
     "group": "General Settings",
     "label": "Ignored users (separate with \",\")",
