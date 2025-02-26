@@ -1,4 +1,5 @@
 var ignoredUsers = [],
+	displayBadges = 'yes',
 	hideCommands = false;
 
 var targetChannel;
@@ -115,13 +116,17 @@ function insertMessage(data) {
 
 	animateCSS(element.querySelector('.chat'), '{chatAnimationIn}');
 
-	for (let i = 0; i < data.badges.length; i++) {
-		let imageElement = document.createElement('img');
-		imageElement.src = data.badges[i]['url'];
+	if (displayBadges === 'yes') {
+		for (let i = 0; i < data.badges.length; i++) {
+			let imageElement = document.createElement('img');
+			imageElement.src = data.badges[i]['url'];
 
-		element.querySelector('.chat-user-badges').appendChild(imageElement)
+			element.querySelector('.chat-user-badges').appendChild(imageElement)
+		}
+
+		element.querySelector('.chat-user-badges').setAttribute('style', `--badges: ${data.badges.length}`)
 	}
-	element.querySelector('.chat-user-badges').setAttribute('style', `--badges: ${data.badges.length}`)
+
 
 	element.querySelector('.chat').setAttribute('data-message-id', data.id || 0);
 
@@ -208,6 +213,8 @@ window.addEventListener('onWidgetLoad', function(obj) {
 		}
 
 		hideCommands = fieldData.hideCommands || hideCommands;
+
+		displayBadges = fieldData.displayBadges || displayBadges;
 
 		messagesLimit = fieldData.messagesLimit || messagesLimit,
 			messagesHide = fieldData.hideAfter || messagesHide;
