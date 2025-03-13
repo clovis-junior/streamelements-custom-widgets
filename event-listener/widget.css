@@ -1,3 +1,6 @@
+/* You can not change below */
+@import url('https://fonts.googleapis.com/css2?family={{fontName}}&display=swap');
+
 *, *:after, *:before { margin: 0; padding: 0; box-sizing: border-box}
 * {
   	outline: 0;
@@ -7,6 +10,7 @@
   	vertical-align: baseline
 }
 
+/* You can change below if necessary */
 @keyframes show {
     0% {
         flex-basis: 0%;
@@ -65,17 +69,17 @@
 .event.raid { border-bottom-color: {{raidColor}} }
 
 .event .username {
-  flex: 1 0 auto;
-  display: block;
-  overflow: hidden;
-  padding: 10px;
-   letter-spacing: {{letterSpacing}}px;
-  font-family: {{fontName}};
-   font-weight: {{fontWeight}};
-  font-size: {{fontSize}}px;
-  color: {{fontColor}};
+    flex: 1 0 auto;
+    display: block;
+    overflow: hidden;
+    padding: 10px;
+    letter-spacing: {{letterSpacing}}px;
+    font-family: '{{fontName}}', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;;
+    font-weight: {{fontWeight}};
+    font-size: {{fontSize}}px;
+    color: {{fontColor}};
 	white-space: nowrap;
-   text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 
 .event .event-icon.gift {
@@ -110,7 +114,7 @@
 .event .event-icon.redemption {
     --url: url('{{redemptionIcon}}');
 }
-.event .event-icon {
+.event .event-icon:not(.hidden) {
   	flex: 0 0 {{iconSize}}px;
     height: {{iconSize}}px;
     display: block;
@@ -118,4 +122,10 @@
 	background-size: cover;
   	background-position: center;
   	background-image: var(--url);
+}
+
+.event .event-icon.hidden {
+    flex: 0 0 0;
+    height: 0;
+    display: none;
 }
