@@ -5,16 +5,26 @@
     "label": "Limit displayed events to:",
     "value": 5
   },
+  "showEventIcon": {
+    "group": "General",
+    "type": "dropdown",
+    "label": "Show Event Icons",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
   "giftIcon": {
-     "group": "General",
-     "type": "image-input",
-     "label": "Gift Icon"
+    "group": "General",
+    "type": "image-input",
+    "label": "Gift Icon"
   },
   "fontName": {
-     "group": "General",
-     "type": "googleFont",
-     "label": "Select a font:",
-     "value": "Nunito"
+    "group": "General",
+    "type": "googleFont",
+    "label": "Select a font:",
+    "value": "Nunito"
   },
   "fontWeight": {
     "group": "General",
@@ -77,9 +87,9 @@
     }
   },
   "followIcon": {
-     "group": "Follower",
-     "type": "image-input",
-     "label": "Icon"
+    "group": "Follower",
+    "type": "image-input",
+    "label": "Icon"
   },
   "followColor": {
     "group": "Follower",
@@ -98,9 +108,9 @@
     }
   },
   "redemptionIcon": {
-     "group": "Redemptions",
-     "type": "image-input",
-     "label": "Icon"
+    "group": "Redemptions",
+    "type": "image-input",
+    "label": "Icon"
   },
   "redemptionColor": {
     "group": "Redemptions",
@@ -131,9 +141,9 @@
     "value": 1
   },
   "hostIcon": {
-     "group": "Host",
-     "type": "image-input",
-     "label": "Icon"
+    "group": "Host",
+    "type": "image-input",
+    "label": "Icon"
   },
   "hostColor": {
     "group": "Host",
@@ -165,8 +175,8 @@
   },
   "raidIcon": {
     "group": "Raid",
-     "type": "image-input",
-     "label": "Icon"
+    "type": "image-input",
+    "label": "Icon"
   },
   "raidColor": {
     "group": "Raid",
@@ -192,8 +202,8 @@
   },
   "subIcon": {
     "group": "Subscribers",
-     "type": "image-input",
-     "label": "Icon"
+    "type": "image-input",
+    "label": "Icon"
   },
   "subColor": {
     "group": "Subscribers",
@@ -225,8 +235,8 @@
   },
   "tipIcon": {
     "group": "Tip",
-     "type": "image-input",
-     "label": "Icon"
+    "type": "image-input",
+    "label": "Icon"
   },
   "tipColor": {
     "group": "Tip",
@@ -258,8 +268,8 @@
   },
   "cheerIcon": {
     "group": "Cheers",
-     "type": "image-input",
-     "label": "Icon"
+    "type": "image-input",
+    "label": "Icon"
   },
   "cheerColor": {
     "group": "Cheers",
