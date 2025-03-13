@@ -14,6 +14,8 @@ var minTip = 0,
     minHost = 0,
     minRaid = 0;
 
+var showIcons = true;
+
 var userLocale = '{locale}';
     userCurrency = null;
 
@@ -78,7 +80,12 @@ function addEvent(type, username, text='') {
     element.querySelector('.event').classList.add(type);
   	element.querySelector('.event').classList.add('show');
     element.querySelector('.event').setAttribute('data-event-id', totalEvents);
-    element.querySelector('.event-icon').classList.add(type);
+
+    if(showIcons)
+        element.querySelector('.event-icon').classList.add(type);
+    else
+        element.querySelector('.event-icon').classList.add('hidden');
+
     element.querySelector('.username').innerText = `${username} ${text}`;
 
     container.prepend(element);
@@ -158,6 +165,8 @@ window.addEventListener('onWidgetLoad', function(obj){
     includeRedemptions = (fieldData.includeRedemptions === 'yes'),
     includeHosts = (fieldData.includeHosts === 'yes'),
     includeRaids = (fieldData.includeRaids === 'yes');
+
+    showIcons = (fieldData.showEventIcon === 'yes');
 
     for(let eventIndex=0;eventIndex<recents.length;eventIndex++){
         const event = recents[eventIndex];
