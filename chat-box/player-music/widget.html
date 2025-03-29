@@ -1,0 +1,53 @@
+<div class="music-player-container"></div>
+
+<template id="player-default-template">
+  <main class="music-player">
+    <div class="music-album-art">
+      <figure>
+        <img id="music-album-art" src alt>
+      </figure>
+    </div>
+    <aside class="music-infos">
+      <div class="music-album-blur-container">
+        <div class="music-album-art" style="background-image: inherit"></div>
+      </div>
+      <div class="music-info-mask">
+        <span id="music-title"></span>
+      </div>
+      <div class="music-info-mask">
+        <span id="music-author"></span>
+      </div>
+      <footer class="music-progress">
+        <div class="music-progress-values">
+          <span id="music-time-elapsed"></span>
+          <div class="music-waveforms"></div>
+          <span id="music-time-total"></span>
+        </div>
+        <div class="music-progress-bar">
+          <div id="music-progress-bar"></div>
+        </div>
+      </footer>
+    </aside>
+  </main>
+</template>
+
+<template id="player-compact-template">
+  <main class="music-player-compact">
+    <div class="music-album-blur-container">
+      <div class="music-album-art" style="background-image: inherit"></div>
+    </div>
+    <div class="music-progress">
+      <div class="music-progress-bar">
+        <div id="music-progress-bar"></div>
+      </div>
+    </div>
+    <div class="music-infos">
+      <div class="music-info-mask">
+        <span id="music-title"></span>
+      </div>
+      <div class="music-info-mask">
+        <span id="music-author"></span>
+      </div>
+    </div>
+  </main>
+</template>
