@@ -1,0 +1,89 @@
+{
+  "youTubeMusicDesktop": {
+    "group": "General",
+    "type": "text",
+    "label": "YouTube Music Desktop IP (include port)",
+    "value": "http://127.0.0.1:9863"
+  },
+  "fontName": {
+    "group": "General",
+    "type": "googleFont",
+    "label": "Select a font:",
+    "value": "Nunito"
+  },
+  "fontColor": {
+    "group": "General",
+    "type": "colorpicker",
+    "label": "Text Color",
+    "value": "#FFF"
+  },
+  "compactPlayer": {
+    "group": "Player Settings",
+    "type": "checkbox",
+    "label": "Compact Player"
+  },
+  "playerSize": {
+    "group": "Player Settings",
+    "type": "slider",
+    "label": "Player Size (in rem)",
+    "value": 8,
+    "min": 8,
+    "max": 16,
+    "step": 1
+  },
+  "hideProgress": {
+    "group": "Player Settings",
+    "type": "checkbox",
+    "label": "Hide Music Progress"
+  },
+  "hideShadow": {
+    "group": "Player Settings",
+    "type": "checkbox",
+    "label": "Hide Player Shadows"
+  },
+  "hideWaves": {
+    "group": "Player Settings",
+    "type": "checkbox",
+    "label": "Hide Sound Waves"
+  },
+  "waveSize": {
+    "group": "Player Settings",
+    "type": "slider",
+    "label": "Show Waves Number",
+    "value": 16,
+    "min": 8,
+    "max": 42,
+    "step": 1
+  },
+  "hideAlbumArt": {
+    "group": "Player Settings",
+    "type": "checkbox",
+    "label": "Hide Album Art"
+  },
+  "albumArtBlur": {
+    "group": "Player Settings",
+    "type": "checkbox",
+    "label": "Show Album Art on Player Background"
+  },
+  "playerColor": {
+    "group": "Player Settings",
+    "type": "colorpicker",
+    "label": "Player Color (with you remove a album art)",
+    "value": "#2f2f2f"
+  },
+  "widgetName": {
+    "group": "General",
+    "type": "hidden",
+    "value": "YouTube Music Player"
+  },
+  "widgetAuthor": {
+    "group": "General",
+    "type": "hidden",
+    "value": "Clovis Junior"
+  },
+  "widgetVersion": {
+    "group": "General",
+    "type": "hidden",
+    "value": "1.0"
+  }
+}
