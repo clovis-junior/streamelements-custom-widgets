@@ -1,6 +1,6 @@
 'use strict';
 
-const container = document.querySelector('.music-player-container');
+const container = document.querySelector('.container');
 
 var player = null;
 var youtubeIp = 'http://127.0.0.1:9863';
@@ -170,7 +170,7 @@ function mountPlayer(compact = false, data = {}, then) {
 	if(data?.hideProgress) {
 		element.querySelector('.music-progress').remove();
 
-		if(!data?.hideWaves) {
+		if(!data?.hideWaves && !compact) {
 			let waves = document.createElement('div');
 			waves.classList.add('music-waveforms');
 
@@ -216,7 +216,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
 	youtubeIp = fieldData?.youTubeMusicDesktop || youtubeIp;
 
 	return mountPlayer(fieldData?.compactPlayer, fieldData, function(){
-		player = document.querySelector('.music-player') || document.querySelector('.music-player-compact');
+		player = document.querySelector('[class^="music-player"]');
 		
 		setInterval(async function() {
 			await reloadPlayer(player)
